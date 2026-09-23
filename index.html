@@ -28,7 +28,9 @@
   <audio id="bgMusic" loop preload="auto" volume="0.2"></audio>
 
 <body>
-  <audio id="bgMusic" autoplay loop preload="auto" src="file:///C:/Users/91941/Downloads/Subwoofer%20Lullaby.mp3"></audio>
+ <audio id="bgMusic" autoplay muted loop playsinline>
+  <source src="./assets/Subwoofer%20Lullaby.mp3" type="audio/mpeg">
+</audio>
 
   <header class="wrap nav">
     <a class="brand" href="#top">LA<span>MIWE</span>.</a>
@@ -132,6 +134,18 @@
   document.addEventListener('keydown', startMusic, { once: true });
 
   const c=document.querySelector('#snake'),x=c.getContext('2d'),st=document.querySelector('#gameStatus'),sc=document.querySelector('#score'),be=document.querySelector('#best'),n=21,z=20;let s,f,d,nd,t,b=+(localStorage.snakeBest||0);be.textContent=b;function food(){do f={x:Math.floor(Math.random()*n),y:Math.floor(Math.random()*n)};while(s.some(p=>p.x===f.x&&p.y===f.y))}function paint(){x.fillStyle='#080a0e';x.fillRect(0,0,420,420);x.fillStyle='#8ee8ff';x.fillRect(f.x*z+4,f.y*z+4,12,12);s.forEach((p,i)=>{x.fillStyle=i?'#8fc94d':'#b8ff63';x.fillRect(p.x*z+2,p.y*z+2,16,16)})}function start(){clearInterval(t);s=[{x:10,y:10},{x:9,y:10},{x:8,y:10}];d=nd={x:1,y:0};sc.textContent=0;food();st.classList.add('hidden');paint();t=setInterval(()=>{d=nd;let h={x:s[0].x+d.x,y:s[0].y+d.y};if(h.x<0||h.x>=n||h.y<0||h.y>=n||s.some(p=>p.x===h.x&&p.y===h.y)){clearInterval(t);st.innerHTML='Game over<span>Press start to try again</span>';st.classList.remove('hidden');return}s.unshift(h);if(h.x===f.x&&h.y===f.y){sc.textContent=+sc.textContent+1;if(+sc.textContent>b){b=+sc.textContent;be.textContent=b;localStorage.snakeBest=b}food()}else s.pop();paint()},110)}document.querySelector('#restart').onclick=start;document.onkeydown=e=>{let q={ArrowUp:{x:0,y:-1},w:{x:0,y:-1},ArrowDown:{x:0,y:1},s:{x:0,y:1},ArrowLeft:{x:-1,y:0},a:{x:-1,y:0},ArrowRight:{x:1,y:0},d:{x:1,y:0}}[e.key];if(q&&(!d||q.x!==-d.x||q.y!==-d.y)){nd=q;e.preventDefault()}};s=[{x:10,y:10}];f={x:15,y:10};paint();
+</script>
+  <script>
+  const audio = document.getElementById('bgMusic');
+
+  function unlockAudio() {
+    if (audio.muted) audio.muted = false;
+    audio.play().catch(() => {});
+  }
+
+  document.addEventListener('pointerdown', unlockAudio, { once: true });
+  document.addEventListener('keydown', unlockAudio, { once: true });
+  document.addEventListener('click', unlockAudio, { once: true });
 </script>
 </body>
 </html>
