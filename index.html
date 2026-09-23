@@ -5,420 +5,415 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="lamiwe — community and staff management portfolio" />
   <title>lamiwe</title>
-  <link rel="icon" type="image/jpeg" href="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=300&q=80" />
+  <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=200&q=80" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg: #0c120f;
-      --bg-soft: #111b18;
-      --panel: rgba(17, 24, 21, 0.78);
-      --panel-strong: rgba(23, 31, 28, 0.92);
-      --line: rgba(189, 214, 194, 0.15);
-      --text: #edf3ee;
-      --muted: #b6c4b9;
-      --sage: #a6c7a5;
-      --sage-strong: #dfeadf;
-      --olive: #a4b58d;
-      --shadow: rgba(0, 0, 0, 0.28);
+    :root{
+      --bg:#0f1210;
+      --bg-alt:#141915;
+      --panel:rgba(20,25,22,.8);
+      --panel-soft:rgba(24,30,27,.72);
+      --line:rgba(219,229,219,.12);
+      --text:#edf2ea;
+      --muted:#b9c4b8;
+      --muted-2:#8d978d;
+      --accent:#d7dfc6;
+      --accent-strong:#f5f5ee;
+      --highlight:#a9b99e;
+      --shadow:rgba(0,0,0,.22);
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: "Inter", sans-serif;
-      color: var(--text);
-      background: var(--bg);
-      line-height: 1.6;
-      overflow-x: hidden;
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:"Inter",sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.6;
+      letter-spacing:-0.01em;
+      overflow-x:hidden;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:-2;
       background:
-        radial-gradient(circle at 20% 15%, rgba(104, 162, 143, 0.16), transparent 28%),
-        radial-gradient(circle at 80% 10%, rgba(122, 106, 70, 0.12), transparent 32%),
-        linear-gradient(135deg, rgba(6, 12, 10, 0.96), rgba(8, 19, 16, 0.92)),
-        url("https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
-      filter: saturate(0.7) contrast(1.05);
+        radial-gradient(circle at top left, rgba(202,213,191,.07), transparent 30%),
+        radial-gradient(circle at top right, rgba(147,166,140,.09), transparent 28%),
+        linear-gradient(180deg, rgba(15,18,16,.94), rgba(10,13,12,.96));
     }
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(rgba(10, 16, 14, 0.12), rgba(10, 16, 14, 0.22));
-      pointer-events: none;
+    a { color:inherit; text-decoration:none; }
+
+    .container{
+      width:min(1120px, calc(100% - 36px));
+      margin:0 auto;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
-    .container {
-      width: min(1100px, calc(100% - 32px));
-      margin: 0 auto;
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(15,18,16,.68);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--line);
     }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(10px);
-      background: rgba(11, 18, 15, 0.6);
-      border-bottom: 1px solid var(--line);
+    .topbar-inner{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
     }
 
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 72px;
+    .brand{
+      font-size:.85rem;
+      letter-spacing:.22em;
+      text-transform:lowercase;
+      color:var(--accent-strong);
+      font-weight:700;
     }
 
-    .brand {
-      font-size: 1.05rem;
-      letter-spacing: 0.18em;
-      text-transform: lowercase;
-      font-weight: 700;
-      color: var(--sage-strong);
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      color:var(--muted);
+      font-size:.72rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:600;
     }
 
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      font-size: 0.82rem;
-      letter-spacing: 0.04em;
-      color: var(--muted);
+    .nav a{
+      transition:color .2s ease;
     }
 
-    .nav a {
-      transition: color 0.2s ease;
+    .nav a:hover{
+      color:var(--text);
     }
 
-    .nav a:hover { color: var(--text); }
-
-    .hero {
-      padding: 96px 0 72px;
+    .hero{
+      padding:110px 0 88px;
     }
 
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 42px;
-      align-items: end;
+    .hero-inner{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:48px;
+      align-items:end;
     }
 
-    .eyebrow {
-      margin: 0 0 18px;
-      color: var(--sage);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-size: 0.7rem;
-      font-weight: 700;
+    .eyebrow{
+      display:inline-block;
+      margin-bottom:18px;
+      color:var(--muted);
+      font-size:.7rem;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-weight:700;
     }
 
-    h1 {
-      margin: 0;
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(3.4rem, 6vw, 6.5rem);
-      line-height: 0.88;
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      max-width: 650px;
+    h1{
+      margin:0;
+      font-family:"Cormorant Garamond",serif;
+      font-weight:600;
+      font-size:clamp(3.8rem,6vw,7rem);
+      line-height:.82;
+      letter-spacing:-.06em;
+      max-width:700px;
     }
 
-    h1 .accent {
-      display: block;
-      color: var(--sage);
-      font-style: italic;
+    .hero-copy{
+      margin-top:22px;
+      max-width:620px;
+      color:var(--muted);
+      font-size:1.08rem;
     }
 
-    .hero-copy {
-      max-width: 580px;
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 1.08rem;
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:26px;
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 30px;
+    .button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:0 18px;
+      border-radius:999px;
+      background:transparent;
+      border:1px solid var(--line);
+      color:var(--text);
+      font-size:.74rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-weight:700;
+      transition:all .2s ease;
     }
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 0 18px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.02);
-      color: var(--text);
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    .button:hover{
+      border-color:rgba(240,244,237,.22);
+      background:rgba(255,255,255,.02);
+      transform:translateY(-1px);
     }
 
-    .button:hover {
-      transform: translateY(-1px);
-      border-color: rgba(214, 228, 214, 0.28);
-      background: rgba(255, 255, 255, 0.04);
+    .button.primary{
+      background:rgba(255,255,255,.03);
     }
 
-    .button.primary {
-      background: rgba(189, 214, 194, 0.12);
-      border-color: rgba(189, 214, 194, 0.26);
-      color: var(--text);
+    .stats{
+      display:grid;
+      gap:16px;
+      padding:22px;
+      background:var(--panel-soft);
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:0 18px 36px var(--shadow);
     }
 
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: 0 18px 50px var(--shadow);
+    .stat{
+      padding:14px 0;
+      border-bottom:1px solid var(--line);
     }
 
-    .profile-box {
-      padding: 18px;
-      display: grid;
-      gap: 18px;
+    .stat:last-child{
+      border-bottom:none;
+      padding-bottom:0;
     }
 
-    .profile-photo {
-      height: 420px;
-      border-radius: 14px;
-      overflow: hidden;
-      background:
-        linear-gradient(rgba(10, 15, 13, 0.15), rgba(10, 15, 13, 0.2)),
-        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80") center/cover no-repeat;
-      border: 1px solid var(--line);
+    .stat-label{
+      color:var(--muted-2);
+      font-size:.68rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      margin-bottom:8px;
+      font-weight:700;
     }
 
-    .profile-meta {
-      padding: 4px 4px 0;
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.8;
+    .stat-value{
+      font-size:1.45rem;
+      letter-spacing:-.04em;
+      font-weight:600;
     }
 
-    .profile-meta strong {
-      color: var(--text);
-      font-weight: 600;
+    section{
+      padding:28px 0 18px;
     }
 
-    section {
-      padding: 36px 0 18px;
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:24px;
     }
 
-    .section-header {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 28px;
+    .section-kicker{
+      color:var(--muted);
+      font-size:.68rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:700;
     }
 
-    .section-header h2 {
-      margin: 0;
-      font-size: clamp(1.8rem, 2.8vw, 3rem);
-      font-weight: 700;
-      letter-spacing: -0.05em;
+    .section-head h2{
+      margin:0;
+      font-size:clamp(2rem,3vw,3.2rem);
+      letter-spacing:-.06em;
+      line-height:1.05;
+      font-weight:700;
     }
 
-    .section-kicker {
-      color: var(--sage);
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      font-weight: 700;
+    .intro{
+      max-width:720px;
+      color:var(--muted);
+      font-size:1.02rem;
+      margin:0;
     }
 
-    .intro {
-      margin: 0;
-      color: var(--muted);
-      max-width: 700px;
-      font-size: 1.02rem;
+    .card-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+      margin-top:28px;
     }
 
-    .skills {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 26px;
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:22px 20px 18px;
+      box-shadow:0 18px 38px var(--shadow);
     }
 
-    .skill {
-      padding: 22px 20px 18px;
-      min-height: 180px;
+    .card .mark{
+      width:40px;
+      height:40px;
+      display:grid;
+      place-items:center;
+      border-radius:999px;
+      color:var(--accent-strong);
+      border:1px solid rgba(240,244,237,.14);
+      font-size:1.05rem;
+      margin-bottom:16px;
+      background:rgba(255,255,255,.02);
     }
 
-    .skill-mark {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      margin-bottom: 16px;
-      border: 1px solid rgba(214, 228, 214, 0.24);
-      color: var(--sage-strong);
-      background: rgba(255, 255, 255, 0.02);
-      font-size: 1.2rem;
+    .card h3{
+      margin:0 0 8px;
+      font-size:1.02rem;
+      font-weight:600;
     }
 
-    .skill h3 {
-      margin: 0 0 8px;
-      font-size: 1.05rem;
-      font-weight: 600;
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:.92rem;
     }
 
-    .skill p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.92rem;
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+      margin-top:28px;
     }
 
-    .timeline {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 26px;
+    .role{
+      position:relative;
+      padding:22px 18px 20px 26px;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:18px;
+      overflow:hidden;
     }
 
-    .role {
-      position: relative;
-      padding: 22px 22px 20px 28px;
-      overflow: hidden;
+    .role::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:18px;
+      bottom:18px;
+      width:2px;
+      background:rgba(212,221,206,.42);
     }
 
-    .role::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 18px;
-      bottom: 18px;
-      width: 2px;
-      background: rgba(176, 214, 181, 0.48);
+    .role h3{
+      margin:0 0 6px;
+      font-size:1.08rem;
+      font-weight:600;
     }
 
-    .role h3 {
-      margin: 0 0 6px;
-      font-size: 1.08rem;
-      font-weight: 600;
+    .role .meta{
+      display:inline-block;
+      color:var(--accent);
+      font-size:.68rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:700;
     }
 
-    .role .meta {
-      display: inline-block;
-      color: var(--sage);
-      font-size: 0.75rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 700;
+    .role p{
+      margin:12px 0 0;
+      color:var(--muted);
+      font-size:.92rem;
     }
 
-    .role p {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 0.92rem;
+    .contact-box{
+      margin:34px 0 80px;
+      padding:34px 22px 28px;
+      text-align:center;
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:22px;
+      box-shadow:0 18px 40px var(--shadow);
     }
 
-    .contact-box {
-      padding: 36px 24px 30px;
-      text-align: center;
-      margin: 40px 0 80px;
+    .contact-box h3{
+      margin:0;
+      font-size:clamp(2rem,3vw,3.2rem);
+      letter-spacing:-.06em;
+      line-height:1.05;
+      font-weight:700;
     }
 
-    .contact-box h3 {
-      margin: 0;
-      font-size: clamp(2rem, 3vw, 3rem);
-      line-height: 1.1;
-      font-weight: 700;
-      letter-spacing: -0.05em;
+    .contact-box p{
+      max-width:560px;
+      margin:14px auto 22px;
+      color:var(--muted);
+      font-size:1rem;
     }
 
-    .contact-box p {
-      max-width: 560px;
-      margin: 14px auto 24px;
-      color: var(--muted);
-      font-size: 1rem;
+    .contact-links{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:12px;
     }
 
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 10px;
+    footer{
+      border-top:1px solid var(--line);
+      padding:22px 0 32px;
+      color:var(--muted);
+      font-size:.75rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
 
-    footer {
-      padding: 24px 0 36px;
-      color: var(--muted);
-      font-size: 0.8rem;
-      border-top: 1px solid var(--line);
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
     }
 
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 860px) {
+    @media (max-width: 860px){
       .hero-inner,
-      .skills,
-      .timeline {
-        grid-template-columns: 1fr;
+      .card-grid,
+      .timeline{
+        grid-template-columns:1fr;
       }
 
-      .profile-box {
-        max-width: 560px;
-        margin: 0 auto;
+      .hero-inner{
+        display:block;
       }
 
-      .nav {
-        gap: 16px;
-        font-size: 0.72rem;
+      .stats{
+        margin-top:26px;
       }
     }
 
-    @media (max-width: 560px) {
-      .topbar-inner {
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 14px 0;
+    @media (max-width: 560px){
+      .topbar-inner{
+        min-height:68px;
+        flex-wrap:wrap;
+        justify-content:center;
+        padding:10px 0;
       }
 
-      .nav {
-        width: 100%;
-        justify-content: center;
+      .nav{
+        gap:14px;
+        font-size:.64rem;
       }
 
-      .hero {
-        padding-top: 74px;
+      .section-head{
+        display:block;
       }
 
-      .section-header {
-        display: block;
+      .section-head h2{
+        margin-top:8px;
       }
 
-      .section-header h2 {
-        margin-top: 8px;
-      }
-
-      .profile-photo {
-        height: 320px;
+      .hero{
+        padding-top:74px;
       }
     }
   </style>
@@ -426,10 +421,10 @@
 <body>
   <header class="topbar">
     <div class="container topbar-inner">
-      <a href="#top" class="brand">lamiwe</a>
+      <a class="brand" href="#top">lamiwe</a>
       <nav class="nav" aria-label="Main navigation">
         <a href="#about">About</a>
-        <a href="#experience">Experience</a>
+        <a href="#experience">Experiences</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -439,26 +434,30 @@
     <section class="hero">
       <div class="container hero-inner">
         <div>
-          <p class="eyebrow">Minecraft community specialist</p>
-          <h1>
-            Building calmer,
-            <span class="accent">healthier communities.</span>
-          </h1>
+          <span class="eyebrow">Minecraft community specialist</span>
+          <h1>Building calmer, healthier communities.</h1>
           <p class="hero-copy">
-            I help Minecraft networks run more smoothly through better staff systems, stronger community culture, and practical leadership that keeps people engaged.
+            I help Minecraft communities run with better structure, clearer leadership, and more human decision-making.
           </p>
+
           <div class="hero-actions">
-            <a class="button primary" href="#experience">View experience</a>
+            <a class="button primary" href="#experience">View experiences</a>
             <a class="button" href="#contact">Let's connect</a>
           </div>
         </div>
 
-        <aside class="card profile-box" aria-label="Profile summary">
-          <div class="profile-photo"></div>
-          <div class="profile-meta">
-            <div><strong>Role:</strong> Staff / Community Management</div>
-            <div><strong>Based:</strong> Online, working with Minecraft communities</div>
-            <div><strong>Focus:</strong> Team structure, moderation, retention, and culture</div>
+        <aside class="stats" aria-label="Profile summary">
+          <div class="stat">
+            <div class="stat-label">Role</div>
+            <div class="stat-value">Staff / Community Lead</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Focus</div>
+            <div class="stat-value">Structure, moderation, retention</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Approach</div>
+            <div class="stat-value">Calm, organized, player-first</div>
           </div>
         </aside>
       </div>
@@ -466,32 +465,31 @@
 
     <section id="about">
       <div class="container">
-        <div class="section-header">
+        <div class="section-head">
           <div class="section-kicker">About</div>
           <h2>More than a moderator.</h2>
         </div>
-
         <p class="intro">
-          I work at the intersection of staff leadership and community care. Whether it is training a team, tightening internal systems, or helping a server feel more welcoming, I try to keep things clear, consistent, and human.
+          I work at the intersection of staff leadership and community care. Whether it is training a team, fixing operational bottlenecks, or helping a server feel more welcoming, I focus on what makes communities sustainable and enjoyable over time.
         </p>
 
-        <div class="skills">
-          <article class="card skill">
-            <div class="skill-mark">✦</div>
+        <div class="card-grid">
+          <article class="card">
+            <div class="mark">✦</div>
             <h3>Staff Leadership</h3>
-            <p>Supporting teams with structure, accountability, and communication so they can do their jobs well.</p>
+            <p>Helping teams communicate clearly, stay accountable, and work with more consistency.</p>
           </article>
 
-          <article class="card skill">
-            <div class="skill-mark">◌</div>
+          <article class="card">
+            <div class="mark">◌</div>
             <h3>General Management</h3>
-            <p>Helping operations run smoothly through simple systems, clear priorities, and steady decision-making.</p>
+            <p>Creating useful systems and keeping day-to-day operations moving without unnecessary friction.</p>
           </article>
 
-          <article class="card skill">
-            <div class="skill-mark">◎</div>
+          <article class="card">
+            <div class="mark">◎</div>
             <h3>Community Care</h3>
-            <p>Improving player experience through moderation, engagement, and a more welcoming atmosphere.</p>
+            <p>Improving how players feel in a space through thoughtful moderation, engagement, and culture.</p>
           </article>
         </div>
       </div>
@@ -499,72 +497,72 @@
 
     <section id="experience">
       <div class="container">
-        <div class="section-header">
+        <div class="section-head">
           <div class="section-kicker">Experience</div>
-          <h2>Server experience</h2>
+          <h2>Selected roles</h2>
         </div>
 
         <p class="intro">
-          Experience across Minecraft communities, staff teams, and community-based projects.
+          Experience across Minecraft networks, SMPs, and community-driven environments.
         </p>
 
         <div class="timeline">
-          <article class="card role">
+          <article class="role">
             <h3>Arcane Realms</h3>
             <span class="meta">Manager</span>
           </article>
 
-          <article class="card role">
+          <article class="role">
             <h3>Extreme Network</h3>
             <span class="meta">Admin</span>
           </article>
 
-          <article class="card role">
+          <article class="role">
             <h3>MinePuff</h3>
             <span class="meta">Admin</span>
           </article>
 
-          <article class="card role">
+          <article class="role">
             <h3>BingungSMP</h3>
             <span class="meta">Staff Manager Assistant · Media Manager Assistant</span>
           </article>
 
-          <article class="card role">
+          <article class="role">
             <h3>Saturne Realms</h3>
             <span class="meta">Helper</span>
           </article>
 
-          <article class="card role">
+          <article class="role">
             <h3>SkyBlock Hub</h3>
             <span class="meta">T. Mod</span>
           </article>
 
-          <article class="card role">
+          <article class="role">
             <h3>Owners Alliance</h3>
             <span class="meta">Mod</span>
           </article>
 
-          <article class="card role">
+          <article class="role">
             <h3>LiveraMc</h3>
             <span class="meta">Executive</span>
           </article>
 
-          <article class="card role">
+          <article class="role">
             <h3>JollySMP</h3>
             <span class="meta">GMA</span>
           </article>
 
-          <article class="card role">
+          <article class="role">
             <h3>BlockFun</h3>
             <span class="meta">Jr Mod</span>
           </article>
 
-          <article class="card role">
+          <article class="role">
             <h3>Void Esports</h3>
             <span class="meta">Community Manager</span>
           </article>
 
-          <article class="card role">
+          <article class="role">
             <h3>AquaticSMP</h3>
             <span class="meta">Executive</span>
           </article>
@@ -574,12 +572,13 @@
 
     <section id="contact">
       <div class="container">
-        <div class="card contact-box">
+        <div class="contact-box">
           <div class="section-kicker">Contact</div>
           <h3>Available for staff and community work.</h3>
           <p>
             If you are looking for someone who understands team structure, player experience, and network operations, I’d be glad to talk.
           </p>
+
           <div class="contact-links">
             <a class="button primary" href="mailto:originallamiwe@gmail.com">originallamiwe@gmail.com</a>
             <a class="button" href="https://discord.com" target="_blank" rel="noreferrer">Discord: lamiwe0</a>
