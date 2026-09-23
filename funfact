@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Fact Corner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 50px;
+        }
+        #fun-fact {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="fun-fact"></div>
+
+    <script>
+        const funFacts = [
+            "A cloud weighs around a million tonnes.",
+            "Identical twins don’t have the same fingerprints.",
+            "Earth’s rotation is changing speed.",
+            "Leftover pasta has extra health benefits.",
+            "Parents in the US consistently rank as the world's unhappiest.",
+            "A thunderstorm called Hector the Convector arrives every day at 3pm.",
+            "Earlobes have no biological purpose.",
+            "When you're reading – even silently – the muscles of your mouth, tongue and larynx activate.",
+            "The largest piece of fossilised dinosaur poo discovered is over 30cm long and over two litres in volume.",
+            "Mars isn’t actually round.",
+            "There’s no such thing as zero-calorie foods.",
+            "Around 8–10 per cent of people grind their teeth at night.",
+            "The Universe's average colour is called 'Cosmic latte'.",
+            "Water might not be wet.",
+            "Most people stroke cats the wrong way.",
+            "Newborn babies don't actually see in black and white.",
+            "The raw ingredients of a human body would cost over £116,000.",
+            "All the world’s bacteria stacked on top of each other would stretch for 10 billion light-years.",
+            "Wearing a tie can reduce blood flow to the brain by 7.5 per cent.",
+            "The fear of long words is called Hippopotomonstrosesquippedaliophobia.",
+            "The world’s oldest dog lived to 29.5 years old.",
+            "The world’s oldest cat lived to 38 years and three days old.",
+            "We've only explored 0.001 per cent of the ocean floor.",
+            "Mount Everest isn't the tallest mountain on Earth.",
+            "Our solar system has a wall.",
+            "Most maps of the world are wrong.",
+            "The Moon is gradually drifting away from Earth.",
+            "Comets smell like rotten eggs.",
+            "Earth’s poles are moving.",
+            "You can actually die laughing.",
+            "Chainsaws were first invented for childbirth.",
+            "Cats prefer to sleep on their left.",
+            "You don’t actually lose most of your heat through your head.",
+            "The T.rex likely had feathers.",
+            "Football teams wearing red kits play better.",
+            "When you cut a worm in two, it regenerates.",
+            "Wind turbines kill between 10,000 and 100,000 birds each year in the UK.",
+            "Board games can reduce your risk of dementia.",
+            "Sound can be minus decibels.",
+            "A horse normally has more than one horsepower.",
+            "About 60 per cent of your body is water.",
+            "In 1912, a man invented a human flying suit, jumped off the Eiffel Tower, and fell to his death.",
+            "Orcas wear other animals as hats.",
+            "Deaf people are known to use sign language in their sleep.",
+            "Pythons can swallow people whole.",
+            "Finland is the happiest country on Earth.",
+            "Hippos can’t swim.",
+            "The Moon looks upside down in the Southern Hemisphere.",
+            "You can yo-yo in space.",
+            "Not only plants photosynthesise.",
+            "You can be heavily pregnant and not realise.",
+            "Bacteria on your skin cause your itches.",
+            "Polar bears aren’t actually white.",
+            "Starfish don’t have bodies.",
+            "Somebody has been constipated for 45 days.",
+            "You travel 2.5 million km a day around the Sun without realising.",
+            "Fish form orderly queues in emergencies.",
+            "There are more bacterial cells in your body than human cells.",
+            "Most ginger cats are male.",
+            "Your nails grow faster in hot summer.",
+            "The Bermuda Triangle is no more hazardous than any other busy ocean route.",
+            "Insects can fly up to 3.25km above sea level, at least.",
+            "There’s a planet mostly made from diamond.",
+            "In the deep sea, male anglerfish don’t just mate – they fuse.",
+            "There’s a condition in which your body can brew alcohol.",
+            "It’s possible for two lucid dreamers to communicate mid-dream.",
+            "It’s surprisingly easy to escape quicksand.",
+            "A penguin can reach depths of 550m in one dive.",
+            "Animals can be allergic to humans.",
+            "Being bored is actually a 'high arousal state' physiologically.",
+            "Our immune systems can detect bad bacteria from good.",
+            "Platypuses sweat milk.",
+            "LEGO bricks withstand compression better than concrete.",
+            "Martial artists who smile before the start of a match are more likely to lose.",
+            "It's almost impossible to get too much sugar from fresh fruit.",
+            "You don't like the sound of your own voice because of the bones in your head.",
+            "A rainbow on Venus is called a glory.",
+            "Protons look like peanuts, rugby balls, bagels, and spheres.",
+            "Mirrors facing each other don't produce infinite reflections.",
+            "There might be a cure for 'evil'.",
+            "All mammals get goosebumps.",
+            "Football players spit so much because exercise increases the amount of protein in saliva.",
+            "Some animals display autistic-like traits.",
+            "The biggest butterfly in the world has a 31cm wingspan.",
+            "You remember more dreams when you sleep badly.",
+            "You could sweat when you're anxious to alert others.",
+            "A lightning bolt is five times hotter than the surface of the Sun.",
+            "The longest anyone has held their breath underwater is over 24.5 minutes.",
+            "The Moon is shrinking.",
+            "Dogs tilt their heads when you speak to them to better pinpoint familiar words.",
+            "If the Earth doubled in size, trees would immediately fall over.",
+            "Mercury, not Venus, is the closest planet to Earth on average.",
+            "Flamingoes aren’t born pink.",
+            "You can smell ants.",
+            "People who eat whatever they want and stay slim have a slow metabolism, not fast.",
+            "There’s a scientist who willingly let insects sting him to find out which hurt the most.",
+            "Earth is 4.54 billion years old.",
+            "It’s actually fine to drink alcohol on (most) antibiotics.",
+            "Electrons might live forever.",
+            "Beavers don't actually live in dams.",
+            "The average dinosaur lifespan was surprisingly small.",
+            "Someone left a family photo on the Moon.",
+            "It rains methane on Saturn’s largest moon.",
+            "Giraffes hum to communicate with each other.",
+            "Glass sponges can live for 15,000 years.",
+            "You have a 50 per cent chance of sharing a birthday with a friend.",
+            "Murder rates rise in summer.",
+            "'New car smell' is a mix of over 200 chemicals.",
+            "‘Sea level’ isn’t actually level.",
+            "You inhale 50 potentially harmful bacteria every time you breathe.",
+            "You can see stars as they were 4,000 years ago with the naked eye.",
+            "Plants came before seeds.",
+            "Our dead cells are eaten by other cells in our body.",
+            "Smells can pass through liquid.",
+            "Bats aren’t blind.",
+            "Hibernating animals don’t dream.",
+            "Pine trees can tell if it's about to rain.",
+            "You can’t fold a piece of A4 paper more than eight times.",
+            "The sharpest teeth in history didn’t belong to sharks or even dinosaurs.",
+            "Laughing came before language.",
+            "The fastest jet in the world can fly almost 10 times the speed of sound.",
+            "South Koreans have the lowest bad cholesterol levels in the world.",
+            "Humans might be able to communicate through dreams.",
+            "Your cat sits on your laptop because it smells of you, not because it’s warm.",
+            "Vultures make nests out of sandals and crossbows.",
+            "The largest organ in the human body was only discovered in the past 10 years.",
+            "Reptiles’ wee is solid.",
+            "Men really do have worse handwriting than women.",
+            "You shouldn't stop your dog from eating poo.",
+            "There’s a 1,200km2 area of France that’s completely sealed off to the public.",
+            "Medieval war horses were hilariously small.",
+            "Bull semen can sell for tens of thousands of pounds per millilitre.",
+            "There’s a worm that can survive being boiled alive.",
+            "There are earthquakes in the sky, and no-one knows why they happen.",
+            "You’ve never actually touched anything in your life.",
+            "If you smell of nail polish remover, you may want to go to the doctor.",
+            "It takes 4.18 years to get over an ex, on average.",
+            "People are walking faster than they used to.",
+            "Scientists once managed to levitate a frog.",
+            "A man once survived for 555 days without a heart.",
+            "Without whale wee, our oceans might collapse.",
+            "Roughly one in 100 children have a different biological father than they thought.",
+            "If a snake ate you, only your hair and nails would be left.",
+            "Horseshoe crabs have blue blood.",
+            "You’ll spend about three and a half years of your life blinking.",
+            "There are stone circles that are older than Stonehenge.",
+            "Mummies smell woody, spicy and a bit sweet.",
+            "An hour of walking burns just 250 calories.",
+            "It's impossible to swallow your own tongue.",
+            "Some insects can live for decades.",
+            "The deepest part of the ocean reaches more than 10,900m."
+        ];
+
+        function displayFunFact() {
+            const today = new Date();
+            const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+            const factIndex = dayOfYear % funFacts.length; // Ensure it wraps around after 151 days
+            document.getElementById('fun-fact').innerText = funFacts[factIndex];
+        }
+
+        displayFunFact();
+    </script>
+</body>
+</html>
